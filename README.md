@@ -38,6 +38,12 @@ Replace `[my-app-name]` with the desired directory name for your new application
 - Ensure `storage/` is web writeable.
 - create a copy ".env" of the file ".env.example" an set up your configuration
 
+Install NodeJS dependencies:
+
+```
+npm install
+```
+
 
 ## Development
 
