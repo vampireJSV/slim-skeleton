@@ -29,7 +29,7 @@ If you don't need all of this, you should just use [slimphp/Slim-Skeleton](https
 Run this command from the directory in which you want to install your new Slim Framework application.
 
 ```
-    composer create-project slim/slim-skeleton [my-app-name]
+    composer create-project dtkahl/slim-skeleton [my-app-name]
 ```
 
 Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
