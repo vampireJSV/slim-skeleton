@@ -15,8 +15,8 @@ class DatabaseFactory
             "database" => getenv("DB_NAME"),
             "username" => getenv("DB_USER"),
             "password" => getenv("DB_PASS"),
-            "charset" => getenv("DB_PASS") ?? "utf8",
-            "collation" => getenv("DB_PASS") ?? "utf8_unicode_ci",
+            "charset" => getenv("DB_CHARSET") ?? "utf8",
+            "collation" => getenv("DB_COLLATION") ?? "utf8_unicode_ci",
         ]);
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
