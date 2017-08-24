@@ -60,7 +60,7 @@ class ExceptionHandlingMiddleware
             $exception = new RuntimeException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
-        if (getenv("DEBUG")) {
+        if (getenv("DEBUG") && !$original_exception instanceof BaseException) {
             $exception = $original_exception instanceof \Exception ? new Error(true) : new PhpError(true);
             /** @var Response $response */
             $response = $exception($request, $response, $original_exception);
