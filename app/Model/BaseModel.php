@@ -5,13 +5,6 @@ use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class BaseModel
- *
- * inject Container and add useful find() and findOrFail()
- *
- * @package App\Model
- */
 abstract class BaseModel extends Model
 {
     /** @var \DI\Container  */
@@ -25,15 +18,24 @@ abstract class BaseModel extends Model
     }
 
     /**
-     * @param $id
-     * @return $this
+     * @return Builder|Model|\Illuminate\Database\Query\Builder
      */
-    public static function find($id)
+    public static function builder()
     {
         global $c;
         $self = new static();
         $builder = new Builder(new \Illuminate\Database\Query\Builder($c->get(Connection::class)));
         $builder->setModel($self);
+        return $builder;
+    }
+
+    /**
+     * @param $id
+     * @return $this
+     */
+    public static function find($id)
+    {
+        $builder = self::builder();
         return $builder->find($id);
     }
 
