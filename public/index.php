@@ -32,7 +32,7 @@ $app = new class() extends \DI\Bridge\Slim\App {
 $c = $app->getContainer();
 
 require APP_ROOT . "/app/dependencies.php";
-require APP_ROOT . "/app/middleware.php";
 require APP_ROOT . "/app/routes.php";
+require APP_ROOT . "/app/middleware.php";
 
 $app->run();
