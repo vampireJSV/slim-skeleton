@@ -50,7 +50,7 @@ npm install
 for development you can use the PHP built-in webserver:
 
 ```
-    php -S 0.0.0.0:8080 -t public public/index.php
+    php -S 0.0.0.0:8080 -t public index.php
 ```
 
 And let webpack bundle your assets live:
