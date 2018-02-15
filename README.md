@@ -3,7 +3,6 @@
 Use this skeleton application for the slim 3 micro-framework with some pre configured dependencies and structures:
 
 - [Twig](https://github.com/twigphp/Twig) as View engine
-- [Eloquent](https://laravel.com/docs/5.4/eloquent) as ORM for database work
 - [Monolog](https://github.com/monolog/monolog) for logging
 - [PHP DI](https://github.com/PHP-DI/PHP-DI) for dependency injection
 - [Silly CLI micro-framework](https://github.com/mnapoli/silly) for CLI Commands
@@ -50,7 +49,7 @@ npm install
 for development you can use the PHP built-in webserver:
 
 ```
-    php -S 0.0.0.0:8080 -t public index.php
+    php -S 127.0.0.1:8080 -t public index.php
 ```
 
 And let webpack bundle your assets live:
