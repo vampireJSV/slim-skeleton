@@ -4,3 +4,4 @@
 /storage/down
 .env
 npm-debug.log
+/public/build/*

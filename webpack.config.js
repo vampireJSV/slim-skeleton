@@ -6,9 +6,10 @@ const
     path = require("path"),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     ManifestPlugin = require("webpack-manifest-plugin"),
-    file_name_pattern = process.env.DEBUG == 1 ? "[name]" : "[name].[chunkhash]",
-    extract_sass = new ExtractTextPlugin(`${file_name_pattern}.css`);
-
+    file_name_pattern = process.env.DEBUG == 0 ? "[name]" : "[name].[chunkhash]",
+    extract_sass = new ExtractTextPlugin(`${file_name_pattern}.css`),
+    UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var webpack = require("webpack");
 
 module.exports = {
     entry: {
@@ -24,17 +25,58 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: extract_sass.extract({
-                    use: ["css-loader", "sass-loader"]
+                    use: ["css-loader", "sass-loader?outputStyle=compressed"]
                 })
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|jpg|jpeg|png|gif)$/,
+                test: /\.(eot|ttf|woff|woff2)$/,
                 loader: "file-loader?name=./assets/[name].[ext]"
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            bypassOnDebug: true,
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            optipng: {
+                                enabled: true,
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            webp: {
+                                quality: 75
+                            }
+                        },
+                    },
+                ]
             }
         ]
     },
     plugins: [
         extract_sass,
-        new ManifestPlugin()
-    ]
+        new ManifestPlugin(),
+        // new UglifyJsPlugin({
+        //     sourceMap: true
+        // }),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
+    ],
+    resolve: {
+        alias: {
+            jquery: "jquery/src/jquery"
+        }
+    }
 };
