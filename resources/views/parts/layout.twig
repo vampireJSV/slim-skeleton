@@ -16,7 +16,10 @@
         <link href="https://fonts.googleapis.com/css?family={{ 'web.google_fonts'|config }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ "main.css"|asset }}">
 
-        {% include 'parts/social_metas/mini.twig' %}
+        {% block metas %}
+            {% include 'parts/social_metas/mini.twig' %}
+        {% endblock %}
+
 
         {{ favicon_block() }}
     </head>
