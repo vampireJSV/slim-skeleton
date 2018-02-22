@@ -1,0 +1,16 @@
+<!-- Place this data between the <head> tags of your website -->
+<!--Page Title. Maximum length 60-70 characters-->
+<title>{{ seo_info.title|trans }}</title>
+<!--Page description. No longer than 155 characters.-->
+<meta name="description" content="{{ seo_info.description|trans }}"/>
+
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" value="{{ seo_info.twitter_summary|trans }}">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="{{ seo_info.title_share|trans }}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="{{ seo_info.url_share }}"/>
+<meta property="og:image" content="{{ seo_info.image_share }}"/>
+<meta property="og:description" content="{{ seo_info.description_share|trans }}"/>

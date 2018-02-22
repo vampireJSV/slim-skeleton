@@ -63,7 +63,9 @@ $app->get( '[/{params:.*}]', function ( $params, Slim\Http\Response $response, S
 	if ( file_exists( $config->get( 'app.twig.path' ) . $page ) ) {
 		return $twig->render( $response, "index.twig", [ 'args' => $args ] );
 	} else {
-		return $response->withStatus( 404 );
+		$response->withStatus( 404 );
+
+		return $twig->render( $response, "error.twig", [ 'message' => 'Page Not Found' ] );
 	}
 } );
 

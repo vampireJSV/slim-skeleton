@@ -1,7 +1,8 @@
 {% extends 'parts/layout.twig' %}
+
+{% set seo_info= 'seo.pages.page'|config %}
+
 {% set menu_option="page" %}
-{% set seo_title="seo_title" %}
-{% set seo_description="seo_description" %}
 {% set body_class="intern page" %}
 {% block slide %}
     <h1>{{ "Creativados projects"|trans }}</h1>
@@ -14,10 +15,4 @@
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
         laborum."|trans }}
     </p>
-    <form action="{{ "send.php"|url }}" method="post">
-        <input type="text" name="name">
-        <input type="email" name="email">
-        <input type="hidden" name="template" value="mail.html">
-        <input type="submit">
-    </form>
 {% endblock %}

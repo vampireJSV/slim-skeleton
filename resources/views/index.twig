@@ -1,7 +1,8 @@
 {% extends 'parts/layout.twig' %}
+
+{% set seo_info= 'seo.pages.index'|config %}
+
 {% set menu_option="" %}
-{% set seo_title="seo_title" %}
-{% set seo_description="seo_description" %}
 {% set body_class="" %}
 {% block slide %}
     <h1><img src="{{ "logo.png"|asset }}" width="65" alt="Creativados">{{ "reativados projects"|trans }}</h1>
@@ -14,6 +15,4 @@
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
         laborum."|trans }}
     </p>
-    <i class="myfonticon myfonticon-creativados"></i>
-    <i class="myfonticon myfonticon-creativados2"></i>
 {% endblock %}

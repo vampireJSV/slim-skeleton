@@ -8,7 +8,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="{{ lang_enable() }}"> <!--<![endif]-->
 {% block head %}
-    {#https://duplika.com/blog/meta-tags-sociales/#}
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -16,8 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family={{ 'web.google_fonts'|config }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ "main.css"|asset }}">
 
-        <title>{{ seo_title|trans }}</title>
-        <meta name="description" content="{{ seo_description|trans }}">
+        {% include 'parts/social_metas/mini.twig' %}
 
         {{ favicon_block() }}
     </head>
@@ -31,13 +30,9 @@
     {% include 'parts/header.twig' %}
 {% endblock %}
 
-{% block slide %}
+{% block slide %}{% endblock %}
 
-{% endblock %}
-
-{% block content %}
-
-{% endblock %}
+{% block content %}{% endblock %}
 
 {% include 'parts/footer.twig' %}
 
