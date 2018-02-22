@@ -1,7 +1,9 @@
 /vendor/
-/.idea/
 /node_modules/
+/.idea/
 /storage/down
 .env
 npm-debug.log
 /public/build/*
+/package-lock.json
+/composer.lock

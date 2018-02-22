@@ -1,13 +1,17 @@
 {
   "scripts": {
     "build": "node node_modules/webpack/bin/webpack.js",
-    "watch": "node node_modules/webpack/bin/webpack.js --watch"
+    "watch": "node node_modules/webpack/bin/webpack.js --watch",
+    "favicon": "node node_modules/cli-real-favicon/real-favicon.js generate resources/assets/js/faviconDescription.json resources/assets/js/faviconData.json resources/assets/favicon"
   },
   "author": "Daniel Kahl",
   "license": "MIT",
   "homepage": "https://github.com/dtkahl/Slim-Skeleton",
   "dependencies": {
+    "bootbox": "^4.4.0",
     "bootstrap": "^4.0.0",
+    "clean-webpack-plugin": "^0.1.18",
+    "cli-real-favicon": "0.0.6",
     "css-loader": "^0.28.4",
     "dotenv": "^4.0.0",
     "ekko-lightbox": "^5.3.0",
@@ -22,7 +26,9 @@
     "slick-carousel": "^1.8.1",
     "style-loader": "^0.18.1",
     "uglifyjs-webpack-plugin": "^1.1.8",
+    "webfonts-loader": "^4.0.1",
     "webpack": "^2.6.1",
-    "webpack-manifest-plugin": "^1.1.0"
+    "webpack-manifest-plugin": "^1.1.0",
+    "copy-webpack-plugin": "^4.4.1"
   }
 }

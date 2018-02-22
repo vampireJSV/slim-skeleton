@@ -7,13 +7,16 @@ const
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     ManifestPlugin = require("webpack-manifest-plugin"),
     file_name_pattern = process.env.DEBUG == 0 ? "[name]" : "[name].[chunkhash]",
+    sass_loader = process.env.DEBUG == 0 ? "sass-loader?outputStyle=compressed" : "sass-loader",
     extract_sass = new ExtractTextPlugin(`${file_name_pattern}.css`),
-    UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+    UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+    CleanWebpackPlugin = require('clean-webpack-plugin'),
+    CopyWebpackPlugin = require('copy-webpack-plugin');
 var webpack = require("webpack");
 
 module.exports = {
     entry: {
-        main: path.join(__dirname, "resources/assets/js/main.js"),
+        main: path.join(__dirname, "resources/assets/js/bootstrap.js"),
     },
     output: {
         path: path.join(__dirname, "public/build"),
@@ -25,7 +28,19 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: extract_sass.extract({
-                    use: ["css-loader", "sass-loader?outputStyle=compressed"]
+                    use: ["css-loader", sass_loader]
+                })
+            },
+            {
+                test: /\.font\.js/,
+                loader: ExtractTextPlugin.extract({
+                    use: [
+                        'css-loader',
+                        {
+                            loader: 'webfonts-loader',
+                            options: {publicPath: '/build/'}
+                        }
+                    ]
                 })
             },
             {
@@ -66,13 +81,26 @@ module.exports = {
     plugins: [
         extract_sass,
         new ManifestPlugin(),
-        // new UglifyJsPlugin({
-        //     sourceMap: true
-        // }),
+        new UglifyJsPlugin({
+            sourceMap: true
+        }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
-        })
+        }),
+        new CleanWebpackPlugin(["public"],{exclude:  ['index.php','.htaccess']}),
+        new CopyWebpackPlugin([{
+            from: 'resources/assets/favicon/site.webmanifest',
+            to: '../site.webmanifest'
+        }, {
+            from: 'resources/assets/favicon/browserconfig.xml',
+            to: '../browserconfig.xml'
+        },  {
+            from: 'resources/assets/favicon/*',
+            to: 'favicon',
+            flatten: true,
+            ignore: ['site.webmanifest', 'browserconfig.xml', 'html_code.html']
+        }])
     ],
     resolve: {
         alias: {
