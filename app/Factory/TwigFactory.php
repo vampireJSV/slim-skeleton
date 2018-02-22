@@ -64,11 +64,11 @@ class TwigFactory {
 				$file_name = $manifest[ $file_name ];
 			}
 
-			return getenv( "URL" ) . $config->get( 'app.assets.path' ) . $file_name;
+			return mount_url() . $config->get( 'app.assets.path' ) . $file_name;
 		} ) );
 
 		$twig->getEnvironment()->addFilter( new TwigFilter( 'url', function ( $string ) {
-			return getenv( "URL" ) . '/' . $string;
+			return mount_url() . '/' . $string;
 		} ) );
 
 
@@ -138,7 +138,7 @@ class TwigFactory {
 				} ) );
 
 			$twig->getEnvironment()->addFilter( new TwigFilter( 'set_lang_link', function ( $string, $config ) {
-				return getenv( "URL" ) . $config->get( 'i18n.url_set_language' ) . '/' . $string;
+				return mount_url() . $config->get( 'i18n.url_set_language' ) . '/' . $string;
 			} ) );
 
 			$twig->getEnvironment()->addFunction( new TwigFunction( 'lang_enable', function () use ( $localeApp ) {

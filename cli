@@ -3,11 +3,12 @@
 CONST APP_ROOT = __DIR__;
 
 require APP_ROOT . '/vendor/autoload.php';
-(new \Dotenv\Dotenv(APP_ROOT))->load();
+( new \Dotenv\Dotenv( APP_ROOT ) )->load();
 
 $app = new \Silly\Edition\PhpDi\Application();
-$c = $app->getContainer();
+$c   = $app->getContainer();
 
+require APP_ROOT . '/app/helpers.php';
 require APP_ROOT . '/app/dependencies.php';
 require APP_ROOT . '/app/commands.php';
 

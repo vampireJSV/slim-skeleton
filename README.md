@@ -10,6 +10,12 @@ Use this skeleton application for the slim 3 micro-framework with some pre confi
 - [dtkahl/php-simple-config](https://github.com/dtkahl/php-simple-config) for simple access to configuration files
 - [dtkahl/php-file-cache](https://github.com/dtkahl/php-file-cache) as simple file cache
 - [Webpack](https://github.com/webpack/webpack) to bundle assets and build SCSS 
+- [Flash Messages](https://github.com/slimphp/Slim-Flash) to Flash sessions messages 
+- [PHPMailer](https://github.com/PHPMailer/PHPMailer) to send Emails 
+- [Session](https://github.com/bryanjhv/slim-session) to management sessions 
+- [Gettext](https://github.com/oscarotero/Gettext) for languages support
+- [Parsedown](https://github.com/erusev/parsedown) for markdown support in translations
+- [Twig Compress](https://github.com/nochso/html-compress-twig) compress twig output
 - Controller, Middleware and Factory classes
 - Exception handling
 - Maintenance mode
@@ -22,13 +28,34 @@ If you don't need all of this, you should just use [slimphp/Slim-Skeleton](https
 - Composer
 - NodeJS (for Webpack)
 
+## Node, Javascript and webpack libraries support
+
+Javascript and client
+- [Jquery](https://github.com/jquery/jquery)
+- [Jquery-migrate](https://github.com/jquery/jquery-migrate)
+- [Bootstrap](https://github.com/twbs/bootstrap)
+- [Bootbox](https://github.com/makeusabrew/bootbox)
+- [Bootstrap Lightbox](https://github.com/ashleydw/lightbox)
+- [Slick carousel](https://github.com/kenwheeler/slick/)
+
+Node
+- [cli-real-favicon](https://github.com/RealFaviconGenerator/cli-real-favicon)
+- [dotenv](https://github.com/motdotla/dotenv)
+
+Webpack
+- [Clean for WebPack](https://github.com/johnagan/clean-webpack-plugin)
+- [Copy Webpack Plugin](https://github.com/webpack-contrib/copy-webpack-plugin)
+- [Image compress](https://github.com/tcoopman/image-webpack-loader)
+- [Webfonts generator](https://github.com/jeerbl/webfonts-loader)
+
+
 
 ## Install the Application
 
 Run this command from the directory in which you want to install your new Slim Framework application.
 
 ```
-    composer create-project dtkahl/slim-skeleton [my-app-name]
+    composer create-project vampireJSV/slim-skeleton [my-app-name]
 ```
 
 Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
@@ -49,7 +76,13 @@ npm install
 for development you can use the PHP built-in webserver:
 
 ```
-    php -S 127.0.0.1:8080 -t public index.php
+    php cli app:dev
+```
+
+Generate favicon for resources/assets/img/logo.png:
+
+```
+    npm run favicon
 ```
 
 And let webpack bundle your assets live:

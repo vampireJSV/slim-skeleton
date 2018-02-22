@@ -2,12 +2,10 @@
 
 use SlimSession\Helper;
 
-class SessionFactory
-{
+class SessionFactory {
 
-    public function __invoke()
-    {
-        return new Helper();
-    }
+	public function __invoke() {
+		return new Helper();
+	}
 
 }

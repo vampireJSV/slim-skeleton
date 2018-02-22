@@ -2,12 +2,10 @@
 
 use Slim\Flash\Messages;
 
-class MessagesFactory
-{
+class MessagesFactory {
 
-    public function __invoke()
-    {
-        return new Messages();
-    }
+	public function __invoke() {
+		return new Messages();
+	}
 
 }

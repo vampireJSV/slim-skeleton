@@ -50,3 +50,15 @@ function scan_dir_to_array( $dir ) {
 
 	return $raw;
 }
+
+function mount_url( $protocol = true ) {
+	$output = getenv( 'URL' );
+	if ( $protocol ) {
+		$output = getenv( 'PROTOCOL' ) . $output;
+	}
+	if ( getenv( 'PORT' ) != '' ) {
+		$output = $output . ":" . getenv( 'PORT' );
+	}
+
+	return $output;
+}
