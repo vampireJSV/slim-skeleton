@@ -51,17 +51,21 @@ $app->get( scan_dir_to_array( APP_ROOT . "/config/" )['i18n']['url_set_language'
 
 $app->get( '[/{params:.*}]', function ( $params, Slim\Http\Response $response, Slim\Http\Request $request, \Dtkahl\SimpleConfig\Config $config, \Slim\Views\Twig $twig ) {
 
-	$args = argsToArray( $params );
-	if ( $args[0] == '' && $request->getUri()->getBasePath() == '' ) {
-		$page = 'index.twig';
-	} else {
+	$args  = argsToArray( $params );
+	$args2 = argsToArray( substr( $request->getUri()->getBasePath(), 1 ) );
+	$page  = 'index.twig';
+	if ( $args2[0] != '' ) {
+		$page = $args2[0] . '.twig';
+	}
+	if ( $args[0] != '' ) {
 		$page = $args[0] . '.twig';
 	}
 	if ( strpos( $page, '.html.twig' ) !== false ) {
 		$page = str_replace( '.html.twig', '.twig', $page );
 	}
+
 	if ( file_exists( $config->get( 'app.twig.path' ) . $page ) ) {
-		return $twig->render( $response, "index.twig", [ 'args' => $args ] );
+		return $twig->render( $response, $page, [ 'args' => $args ] );
 	} else {
 		$response->withStatus( 404 );
 
