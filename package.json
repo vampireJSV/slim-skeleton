@@ -8,10 +8,10 @@
   "license": "MIT",
   "homepage": "https://github.com/dtkahl/Slim-Skeleton",
   "dependencies": {
-    "bootbox": "^4.4.0",
     "bootstrap": "^4.0.0",
     "clean-webpack-plugin": "^0.1.18",
     "cli-real-favicon": "0.0.6",
+    "copy-webpack-plugin": "^4.4.1",
     "css-loader": "^0.28.4",
     "dotenv": "^4.0.0",
     "ekko-lightbox": "^5.3.0",
@@ -19,6 +19,7 @@
     "file-loader": "^1.1.6",
     "image-webpack-loader": "^4.1.0",
     "jquery": "^3.3.1",
+    "jquery-match-height": "^0.7.2",
     "jquery-migrate": "3.0.0",
     "node-sass": "^4.5.3",
     "popper.js": "^1.13.0",
@@ -28,7 +29,6 @@
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webfonts-loader": "^4.0.1",
     "webpack": "^2.6.1",
-    "webpack-manifest-plugin": "^1.1.0",
-    "copy-webpack-plugin": "^4.4.1"
+    "webpack-manifest-plugin": "^1.1.0"
   }
 }

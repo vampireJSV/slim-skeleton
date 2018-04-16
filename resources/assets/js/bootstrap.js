@@ -13,10 +13,8 @@ import 'jquery';
 import 'jquery-migrate';
 import 'popper.js';
 import 'bootstrap';
-import bootbox from 'bootbox';
 import 'slick-carousel';
 import 'ekko-lightbox';
 
-bootbox.setLocale('es');
 
 require("./main.js");

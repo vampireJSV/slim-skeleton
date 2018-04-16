@@ -100,6 +100,10 @@ module.exports = {
             to: 'favicon',
             flatten: true,
             ignore: ['site.webmanifest', 'browserconfig.xml', 'html_code.html']
+        },{
+            from: 'resources/assets/copy/*',
+            to: '',
+            flatten: true
         }])
     ],
     resolve: {

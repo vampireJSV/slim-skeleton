@@ -1,10 +1,4 @@
-<!-- Place this data between the <head> tags of your website -->
-<!--Page Title. Maximum length 60-70 characters-->
-<title>{{ seo_info.title|trans }}</title>
-<!--Page description. No longer than 155 characters.-->
-<meta name="description" content="{{ seo_info.description|trans }}"/>
-
-
+{% include "required.twig" %}
 <!-- Twitter Card data -->
 <meta name="twitter:card" value="{{ seo_info.twitter_summary|trans }}">
 

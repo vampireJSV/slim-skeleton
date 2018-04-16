@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="{{ "main.css"|asset }}">
 
         {% block metas %}
-            {% include 'parts/social_metas/mini.twig' %}
+            {% include 'parts/social_metas/required.twig' %}
         {% endblock %}
 
 
@@ -46,7 +46,7 @@
 <script>
     {% set mensaje=flash_alert() %}
     {% if mensaje!='' %}
-    bootbox.alert("{{ mensaje }}");
+    alert("{{ mensaje }}");
     {% endif %}
     (function (b, o, i, l, e, r) {
         b.GoogleAnalyticsObject = l;
