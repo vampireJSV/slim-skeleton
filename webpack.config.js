@@ -88,22 +88,23 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery"
         }),
-        new CleanWebpackPlugin(["public"],{exclude:  ['index.php','.htaccess']}),
+        new CleanWebpackPlugin(["public"], {exclude: ['index.php', '.htaccess']}),
         new CopyWebpackPlugin([{
             from: 'resources/assets/favicon/site.webmanifest',
             to: '../site.webmanifest'
         }, {
             from: 'resources/assets/favicon/browserconfig.xml',
             to: '../browserconfig.xml'
-        },  {
+        }, {
             from: 'resources/assets/favicon/*',
             to: 'favicon',
             flatten: true,
             ignore: ['site.webmanifest', 'browserconfig.xml', 'html_code.html']
-        },{
-            from: 'resources/assets/copy/*',
+        }, {
+            from: '**/*',
             to: '',
-            flatten: true
+            flatten: false,
+            context: "resources/assets/copy"
         }])
     ],
     resolve: {
