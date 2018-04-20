@@ -13,6 +13,7 @@ const
     CleanWebpackPlugin = require('clean-webpack-plugin'),
     CopyWebpackPlugin = require('copy-webpack-plugin');
 var webpack = require("webpack");
+// var uglifyJ =  ? : null;
 
 module.exports = {
     entry: {
@@ -22,7 +23,6 @@ module.exports = {
         path: path.join(__dirname, "public/build"),
         filename: `${file_name_pattern}.js`
     },
-
     module: {
         rules: [
             {
@@ -78,12 +78,18 @@ module.exports = {
             }
         ]
     },
-    plugins: [
+    plugins: getPlugins(),
+    resolve: {
+        alias: {
+            jquery: "jquery/src/jquery"
+        }
+    }
+};
+
+function getPlugins() {
+    var plugins = [
         extract_sass,
         new ManifestPlugin(),
-        new UglifyJsPlugin({
-            sourceMap: true
-        }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
@@ -105,11 +111,12 @@ module.exports = {
             to: '',
             flatten: false,
             context: "resources/assets/copy"
-        }])
-    ],
-    resolve: {
-        alias: {
-            jquery: "jquery/src/jquery"
-        }
+        }])];
+    if (process.env.DEBUG == 0) {
+        plugins.push(new UglifyJsPlugin({
+            sourceMap: true
+        }));
     }
-};
+
+    return plugins;
+}
