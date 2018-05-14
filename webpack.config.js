@@ -111,6 +111,11 @@ function getPlugins() {
             to: '',
             flatten: false,
             context: "resources/assets/copy"
+        }, {
+            from: 'skins/**/*',
+            to: '',
+            flatten: false,
+            context: "resources/assets/vendor/layerslider"
         }])];
     if (process.env.DEBUG == 0) {
         plugins.push(new UglifyJsPlugin({
