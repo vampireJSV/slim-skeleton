@@ -18,10 +18,10 @@ import 'bootstrap';
 import 'slick-carousel';
 import 'ekko-lightbox';
 
-require("../vendor/layerslider/js/layerslider.transitions.js");
-require("../vendor/layerslider/js/layerslider.kreaturamedia.jquery.js");
-require("../vendor/layerslider/plugins/origami/layerslider.origami");
-require("../vendor/layerslider/plugins/popup/layerslider.popup");
-require("../vendor/layerslider/plugins/timeline/layerslider.timeline");
+// require("../vendor/layerslider/js/layerslider.transitions.js");
+// require("../vendor/layerslider/js/layerslider.kreaturamedia.jquery.js");
+// require("../vendor/layerslider/plugins/origami/layerslider.origami");
+// require("../vendor/layerslider/plugins/popup/layerslider.popup");
+// require("../vendor/layerslider/plugins/timeline/layerslider.timeline");
 
 require("./main.js");

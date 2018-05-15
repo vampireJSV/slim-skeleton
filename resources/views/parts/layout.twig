@@ -48,6 +48,7 @@
     {% if mensaje!='' %}
     alert("{{ mensaje }}");
     {% endif %}
+    {% if 'seo.google_UA'|config!='' %}
     (function (b, o, i, l, e, r) {
         b.GoogleAnalyticsObject = l;
         b[l] || (b[l] =
@@ -62,38 +63,41 @@
     }(window, document, 'script', 'ga'));
     ga('create', '{{ 'seo.google_UA'|config }}', 'auto');
     ga('send', 'pageview');
+    {% endif %}
 
     if (window.location.hash == '#{{ "web.ok_send_hash"|config|trans }}') {
         bootbox.alert('{{ "web.ok_send"|config|trans }}');
     }
 </script>
-<!-- Facebook Pixel Code -->
-<script>
-    !function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-            n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-        'https://connect.facebook.net/es_ES/fbevents.js');
-    fbq('init', '{{ 'seo.facebook_pixel'|config }}');
-    fbq('track', 'PageView');
-</script>
-<noscript>
-    <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id={{ 'seo.facebook_pixel'|config }}&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Facebook Pixel Code -->
+{% if 'seo.facebook_pixel'|config!='' %}
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/es_ES/fbevents.js');
+        fbq('init', '{{ 'seo.facebook_pixel'|config }}');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id={{ 'seo.facebook_pixel'|config }}&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+{% endif %}
 </body>
 </html>{% endhtmlcompress %}
