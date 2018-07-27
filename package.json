@@ -22,7 +22,7 @@
     "jquery": "^3.3.1",
     "jquery-match-height": "^0.7.2",
     "jquery-migrate": "3.0.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.9.0",
     "popper.js": "^1.13.0",
     "sass-loader": "^6.0.5",
     "slick-carousel": "^1.8.1",

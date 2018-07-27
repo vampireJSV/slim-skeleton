@@ -9,6 +9,8 @@ const
     file_name_pattern = process.env.DEBUG == 0 ? "[name]" : "[name].[chunkhash]",
     sass_loader = process.env.DEBUG == 0 ? "sass-loader?outputStyle=compressed" : "sass-loader",
     extract_sass = new ExtractTextPlugin(`${file_name_pattern}.css`),
+    compress_img = process.env.DEBUG == 1 ? true : false,
+    img_loader = process.env.DEBUG == 1 ? 'file-loader' : 'file-loader?name=[name].[ext]',
     UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
     CleanWebpackPlugin = require('clean-webpack-plugin'),
     CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -31,18 +33,18 @@ module.exports = {
                     use: ["css-loader", sass_loader]
                 })
             },
-            {
-                test: /\.font\.js/,
-                loader: ExtractTextPlugin.extract({
-                    use: [
-                        'css-loader',
-                        {
-                            loader: 'webfonts-loader',
-                            options: {publicPath: '/build/'}
-                        }
-                    ]
-                })
-            },
+            /*   {
+                   test: /\.font\.js/,
+                   loader: ExtractTextPlugin.extract({
+                       use: [
+                           'css-loader',
+                           {
+                               loader: 'webfonts-loader',
+                               options: {publicPath: '/build/'}
+                           }
+                       ]
+                   })
+               },*/
             {
                 test: /\.(eot|ttf|woff|woff2)$/,
                 loader: "file-loader?name=./assets/[name].[ext]"
@@ -50,11 +52,12 @@ module.exports = {
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
                 use: [
-                    'file-loader',
+                    img_loader,
                     {
                         loader: 'image-webpack-loader',
                         options: {
-                            bypassOnDebug: true,
+                            bypassOnDebug: compress_img,
+                            disable: compress_img,
                             mozjpeg: {
                                 progressive: true,
                                 quality: 65
@@ -112,12 +115,12 @@ function getPlugins() {
             flatten: false,
             context: "resources/assets/copy"
         }
-        // , {
-        //     from: 'skins/**/*',
-        //     to: '',
-        //     flatten: false,
-        //     context: "resources/assets/vendor/layerslider"
-        // }
+            // , {
+            //     from: 'skins/**/*',
+            //     to: '',
+            //     flatten: false,
+            //     context: "resources/assets/vendor/layerslider"
+            // }
         ])];
     if (process.env.DEBUG == 0) {
         plugins.push(new UglifyJsPlugin({
