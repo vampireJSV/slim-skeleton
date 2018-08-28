@@ -21,7 +21,7 @@ class BuildCommand
                 if (is_dir('public/'.$file)) {
                     $zipFile->addDirRecursive('public/'.$file, "/".$file);
                 } else {
-                    $zipFile->addFile('public/'.$file, '/'.$file);
+                    $zipFile->addFile('public/'.$file);
                 }
             }
         }
