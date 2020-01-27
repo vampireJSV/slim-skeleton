@@ -1,5 +1,5 @@
 <?php
-if (PHP_SAPI == "cli-server") {
+if (PHP_SAPI=="cli-server") {
     // To help the built-in PHP dev server, check if the request was actually for
     // something which should probably be served as a static file
     $url  = parse_url($_SERVER["REQUEST_URI"]);
@@ -13,15 +13,16 @@ if (PHP_SAPI == "cli-server") {
 const APP_ROOT = __DIR__."/..";
 require APP_ROOT."/app/helpers.php";
 
-session_save_path(scan_dir_to_array(APP_ROOT."/config/")['app']['sessions']['path']);
+$session_path = scan_dir_to_array(APP_ROOT."/config/")['app']['sessions']['path'];
+clean_old_sessions($session_path);
+session_save_path($session_path);
 session_start();
 
 require APP_ROOT."/vendor/autoload.php";
 (new \Dotenv\Dotenv(APP_ROOT))->load();
 
 // Instantiate the app
-$app = new class() extends \DI\Bridge\Slim\App
-{
+$app = new class() extends \DI\Bridge\Slim\App {
     protected function configureContainer(\DI\ContainerBuilder $builder)
     {
         $builder->addDefinitions([
