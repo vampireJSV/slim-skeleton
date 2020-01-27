@@ -8,7 +8,8 @@
   "license": "MIT",
   "homepage": "https://github.com/dtkahl/Slim-Skeleton",
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "@fortawesome/fontawesome-free": "^5.12",
+    "bootstrap": "^4",
     "clean-webpack-plugin": "^0.1.18",
     "cli-real-favicon": "0.0.6",
     "copy-webpack-plugin": "^4.4.1",

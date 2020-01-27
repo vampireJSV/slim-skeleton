@@ -1,6 +1,6 @@
 <?php return [
 	"google_UA"      => "UA-XXXXX-X",
-	"facebook_pixel" => "",
+	"facebook_pixel" => "XXXX",
 	"pages"          => [
 		"index" => [
 			"title"             => "Title",
