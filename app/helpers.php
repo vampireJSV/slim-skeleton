@@ -88,8 +88,8 @@ function rrmdir($dir, $deletedir = true)
 
 function clean_old_sessions($path, $max_life_secons = 86400)
 {
-    if (is_dir($dir)) {
-        $objects = scandir($dir);
+    if (is_dir($path)) {
+        $objects = scandir($path);
         foreach ($objects as $object) {
             if ($object!="." && $object!="..") {
                 if ((filemtime($path.'/'.$object) + $max_life_secons)<time()) {
