@@ -55,8 +55,14 @@ if (scan_dir_to_array(APP_ROOT."/config/")['i18n']['enable']) {
         ) {
 
             $session->locale = $ref;
+            if (is_null($flash->getMessage('history'))) {
+                $url = mount_url();
+            } else {
+                $url = $flash->getMessage('history')[0];
+            }
 
-            return $response->withStatus(302)->withHeader('Location', $flash->getMessage('history')[0]);
+
+            return $response->withStatus(302)->withHeader('Location', $url);
         });
 }
 
