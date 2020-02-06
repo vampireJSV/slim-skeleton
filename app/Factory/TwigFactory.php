@@ -13,6 +13,7 @@ use Slim\Views\TwigExtension;
 use SlimSession\Helper;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
+use Twig\Extension\DebugExtension;
 
 class TwigFactory
 {
@@ -38,6 +39,10 @@ class TwigFactory
 
         $twig->addExtension(new TwigExtension($router, ""));
 
+        if (getenv("DEBUG")==1) {
+            $twig->addExtension(new DebugExtension());
+        }
+
         $twig->addExtension(new HtmlCompressTwig\Extension());
 
         $twig->offsetSet("debug", getenv("DEBUG"));
@@ -45,7 +50,7 @@ class TwigFactory
         $twig->getEnvironment()->addFunction(new TwigFunction('flash_alert', function () use ($messages) {
             $messages = $messages->getMessage('alert');
             $output   = '';
-            if (isset($messages['alert'][0]) && $messages['alert'][0] != '') {
+            if (isset($messages['alert'][0]) && $messages['alert'][0]!='') {
                 $output = $messages['alert'][0];
             }
 
@@ -76,6 +81,10 @@ class TwigFactory
 
         $twig->getEnvironment()->addFilter(new TwigFilter('url', function ($string) {
             return mount_url().'/'.$string;
+        }));
+
+        $twig->getEnvironment()->addFilter(new TwigFilter('data', function ($string) {
+            return json_decode(file_get_contents(APP_ROOT."/resources/data/".$string.".json"));
         }));
 
 
@@ -117,12 +126,12 @@ class TwigFactory
 
             $twig->getEnvironment()->addFilter(new TwigFilter('trans',
                 function ($string) use ($localeApp, $config, $auto_generate_translations, $translations) {
-                    if ($string == "") {
+                    if ($string=="") {
                         return "";
                     }
                     if ($auto_generate_translations) {
                         $translation = $translations->find(null, $string);
-                        if ($translation == false) {
+                        if ($translation==false) {
                             $translations->insert(null, $string);
                             $translations->toPoFile($config->get('i18n.path').'/'.$localeApp.'.po');
                         }
