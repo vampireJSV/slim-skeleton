@@ -7,3 +7,5 @@ npm-debug.log
 /public/build/*
 /package-lock.json
 /composer.lock
+/public/browserconfig.xml
+/public/site.webmanifest
