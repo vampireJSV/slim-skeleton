@@ -1,9 +1,4 @@
-require("../scss/custom.scss");
 require("../scss/bootstrap.scss");
-require("bootstrap/scss/bootstrap.scss");
-require("slick-carousel/slick/slick-theme.scss");
-require("slick-carousel/slick/slick.scss");
-require("../scss/main.scss");
 require('./myfont.font');
 var req = require.context("../img", true);
 req.keys().forEach(function (key) {
