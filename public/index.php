@@ -34,6 +34,25 @@ $app = new class() extends \DI\Bridge\Slim\App {
         ]);
     }
 };
+if (scan_dir_to_array(APP_ROOT."/config/")['app']['orm'] && getenv('DB_DRIVER')!='') {
+    require APP_ROOT.'/app/rb.php';
+    if (getenv('DB_DRIVER')!='sqlite' && getenv('DB_SERVER')!='' && getenv('DB_USER')!='') {
+        R::setup(getenv('DB_DRIVER').':host='.getenv('DB_SERVER').';dbname='.getenv('DB_NAME'),
+            getenv('DB_USER'), getenv('DB_PASS'));
+    } elseif (getenv('DB_NAME')!='') {
+
+        R::setup('sqlite:'.APP_ROOT.'/storage/'.getenv('DB_NAME').'.db');
+
+    } else {
+        R::setup('sqlite:'.APP_ROOT.'/storage/dates.db');
+    }
+    if (getenv('DEBUG')==0) {
+        R::freeze(true);
+    } else {
+        R::fancyDebug(true);
+    }
+
+}
 /** @var \DI\Container $c */
 $c = $app->getContainer();
 
@@ -65,6 +84,5 @@ if (scan_dir_to_array(APP_ROOT."/config/")['i18n']['enable']) {
             return $response->withStatus(302)->withHeader('Location', $url);
         });
 }
-
 
 $app->run();
