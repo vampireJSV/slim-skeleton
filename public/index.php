@@ -85,4 +85,30 @@ if (scan_dir_to_array(APP_ROOT."/config/")['i18n']['enable']) {
         });
 }
 
+$app->post('/'.scan_dir_to_array(APP_ROOT."/config/")['web']['send_url'],
+    function (
+        Slim\Http\Response $response,
+        Slim\Http\Request $request,
+        \PHPMailer $mail,
+        \Slim\Flash\Messages $flash
+    ) {
+        $admin      = scan_dir_to_array(APP_ROOT."/config/")['mail']['admin'];
+        $web_config = scan_dir_to_array(APP_ROOT."/config/")['web'];
+        $mail->addAddress($admin['email'], $admin['name']);
+        $mail->Subject = $web_config['contact_subject'];
+        $text          = '';
+        foreach ($request->getParams() as $clave => $valor) {
+            $text .= $clave.':'.$valor."
+";
+        }
+        $mail->Body = $text;
+
+        if ( ! $mail->send()) {
+            $response->withStatus(500);
+        }
+
+        return $response->withStatus(302)->withHeader('Location',
+            $flash->getMessage('history')[0].'#'.$web_config['ok_send_hash']);
+    });
+
 $app->run();
