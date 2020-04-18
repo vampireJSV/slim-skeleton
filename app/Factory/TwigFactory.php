@@ -62,6 +62,8 @@ class TwigFactory
 
             if (file_exists(APP_ROOT."/resources/assets/favicon/html_code.html")) {
                 $output = file_get_contents(APP_ROOT."/resources/assets/favicon/html_code.html");
+                $output = str_replace('/build/favicon/', mount_url().'/build/favicon/', $output);
+                $output = str_replace('/build/favicon/site.webmanifest', '/site.webmanifest', $output);
             }
 
             return $output;
