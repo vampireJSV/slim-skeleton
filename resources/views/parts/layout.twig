@@ -67,6 +67,37 @@
     if (window.location.hash == '#{{ "web.ok_send_hash"|config|trans }}') {
         alert('{{ "web.ok_send"|config|trans }}');
     }
+    new cookieNoticeJS({
+        'messageLocales': {
+            'es': 'Al seguir navegando, aceptas nuestra política de cookies.'
+        },
+        'buttonLocales': {
+            'es': 'Aceptar'
+        },
+        'learnMoreLinkText': {
+            'es': 'Más informacion'
+        },
+        'learnMoreLinkEnabled': true,
+        'learnMoreLinkHref': '',
+        'linkTarget':
+            '_blank',
+        'expiresIn':
+            30,
+        'fontFamily':
+            'inherit',
+        'buttonBgColor':
+            '#cf74b9',
+        'buttonTextColor':
+            '#fff',
+        'noticeBgColor':
+            '#000',
+        'noticeTextColor':
+            '#fff',
+        'linkColor':
+            '#cf74b9',
+
+    });
+
 </script>
 {% if 'seo.facebook_pixel'|config!='' %}
     <!-- Facebook Pixel Code -->
